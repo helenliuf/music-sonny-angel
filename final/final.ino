@@ -24,19 +24,13 @@ int t1 = -1;
 int T; 
 int slope; 
 byte periodChanged = 0;
-
 int mic; // variable for mic analogRead 
-
-
 const int baseline = 1900; 
 int amp; //different between mic reading and the amplitude 
-
-
+unsigned long timeout = 0;
 
 int queue[QSIZE]; // a queue to store most recent samples
 int queue_index = 0;
-
-unsigned long timeout = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -69,8 +63,6 @@ void loop() {
     //displayColor(Wheel(100));
 
     mic = analogRead(micpin);
-
-    //HELP
     int sensorValue = analogRead(micpin);  // Read the analog input from the sound sensor
     
     //Serial.println(mic);
@@ -86,31 +78,26 @@ void loop() {
    if(avg > 500){
     lcd.clearDisplay();
     drawHappyFace(48, 16);
-   
    }
    else{
     lcd.clearDisplay();
     drawSadFace(48, 16);
-    
    }
    
-   //HELP
-       // Map the filtered sensor value to the number of LEDs
-    int mappedValue = map(avg, 40, 1000, 0, N_PIXELS/2);
+   // Map the filtered sensor value to the number of LEDs
+   int mappedValue = map(avg, 40, 1000, 0, N_PIXELS/2);
   
-    for (int i = 0; i < N_PIXELS; i++) {
-      if (i < mappedValue && (i < (N_PIXELS/2))) {
+   for (int i = 0; i < N_PIXELS; i++) {
+     if (i < mappedValue && (i < (N_PIXELS/2))) {
         strip.setPixelColor(i, strip.Color(0, 255, 0));  // Change the color as needed (here: red)
-      } else if (i > (N_PIXELS - mappedValue - 1)){
+     } else if (i > (N_PIXELS - mappedValue - 1)){
         strip.setPixelColor(i, strip.Color(255, 0, 0));
-      }
-        else {
+     }
+       else {
         strip.setPixelColor(i, strip.Color(255, 255, 255));  // Turn off the LEDs beyond the mapped value
-      }
-    }
-  
-    strip.show();
-    
+     }
+  }
+  strip.show();  
   ring.clear();
   mappedValue = map(avg, 100, 1000, 0, 16);
   
@@ -159,7 +146,6 @@ void fadeOut()
 {
   strip.setBrightness(32);
   strip.show();
-  
   /*for(int i=0; i<5; i++) {
     //strip.setBrightness(110 - i*20);
     strip.show(); // Update strip
@@ -171,7 +157,6 @@ void fadeOut()
 void fadeIn() {
   strip.setBrightness(32);
   strip.show();
-
   /*for(int i=0; i<5; i++) {
     //strip.setBrightness(20*i + 30);
     //strip.show();
@@ -194,11 +179,9 @@ void displayColor(uint32_t color) {
   fadeIn();
 }
 
-
 uint32_t Wheel(byte WheelPos) {
   // Serial.println(WheelPos);
   if(WheelPos < 85) {
-   
     return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
   } 
   else if(WheelPos < 170) {
