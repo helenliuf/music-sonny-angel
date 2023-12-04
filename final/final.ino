@@ -8,14 +8,18 @@ Adafruit_SSD1306 lcd(128, 64, &Wire, -1);
 
 const int micpin = A5;
 #define PIN 25 //for ring lights
+#define PIN2 A16 //for ring lights
 #define QSIZE 13  // filter size
 #define LED_PIN A13 // LED are connected to A13
 #define N_PIXELS 142 // Number of LED 
 #define N 100 // Number of samples 
 #define fadeDelay 10 // fade amount
 #define noiseLevel 15 // Amount of noise we want to chop off 
+
 #define ringshow_noglitch() {delay(1);ring.show();delay(1);ring.show();}
+#define ringshow_noglitch2() {delay(1);ring2.show();delay(1);ring2.show();}
 Adafruit_NeoPixel ring = Adafruit_NeoPixel(16, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel ring2 = Adafruit_NeoPixel(16, PIN2, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_PIXELS, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 int samples[N]; // storage for a sample 
@@ -44,10 +48,18 @@ void setup() {
   strip.show();  // Initialize all pixels to 'off'
 
   ring.begin();
+  ring2.begin();
+  
   ring.setBrightness(32);
+  ring2.setBrightness(32);
+  
   ring.clear(); // clear all pixels
+  ring2.clear(); // clear all pixels
+  
   ring.setPixelColor(0,0);
-  ringshow_noglitch(); 
+  ring2.setPixelColor(0,0);
+  ringshow_noglitch();
+  ringshow_noglitch2(); 
 }
 
 float getAvg(){
@@ -111,6 +123,18 @@ void loop() {
     delay(1);
   }
   ringshow_noglitch();
+
+  ring2.clear();
+  for(int i=0;i<(ring.numPixels());i++) {
+    if (i > (16-mappedValue-1)) {
+        ring2.setPixelColor(i, ring2.Color(255, 0, 255));
+      } else {
+        ring2.setPixelColor(i, ring2.Color(255, 255, 255));  // Turn off the LEDs beyond the mapped value
+      }
+    //ringshow                          `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_noglitch();  
+    delay(1);
+  }
+  ringshow_noglitch2();
   delay(10);  // Adjust the delay for responsiveness
   }
   
