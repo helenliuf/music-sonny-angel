@@ -1,6 +1,7 @@
 # Music Sonny Angel - CICS256 Final Assignment
 Group members:\
 Helen Liu, Larissa Zhu, Katie Xu, Camden Alexander
+<<<<<<< HEAD
 \
 <<<<<<< HEAD
 \
@@ -28,6 +29,9 @@ There's never a dull moment here! Designed to bring happiness to the music enthu
 4. Upload program to Makerboard
 5. Enjoy the company of your new friend!
 =======
+=======
+\\
+>>>>>>> f399ea4 (Update README.md with presentation)
 Presentation link:\
 https://www.canva.com/design/DAF1_amApRo/uNLPFWbWSq5N-Fl6BiW-HA/view?utm_content=DAF1_amApRo&utm_campaign=designshare&utm_medium=link&utm_source=editor
 >>>>>>> cd64344 (Update README.md with presentation link)
