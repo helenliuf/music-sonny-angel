@@ -2,6 +2,7 @@
 Group members:\
 Helen Liu, Larissa Zhu, Katie Xu, Camden Alexander
 \
+<<<<<<< HEAD
 \
 Presentation link:\
 https://www.canva.com/design/DAF1_amApRo/uNLPFWbWSq5N-Fl6BiW-HA/view?utm_content=DAF1_amApRo&utm_campaign=designshare&utm_medium=link&utm_source=editor
@@ -26,3 +27,7 @@ There's never a dull moment here! Designed to bring happiness to the music enthu
 3. Plug laptop (power source) into the Sonny Angel's Makerboard in correct port
 4. Upload program to Makerboard
 5. Enjoy the company of your new friend!
+=======
+Presentation link:\
+https://www.canva.com/design/DAF1_amApRo/uNLPFWbWSq5N-Fl6BiW-HA/view?utm_content=DAF1_amApRo&utm_campaign=designshare&utm_medium=link&utm_source=editor
+>>>>>>> cd64344 (Update README.md with presentation link)
