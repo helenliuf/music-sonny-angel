@@ -3,6 +3,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <FastLED.h>
+#include <ESP32Servo.h>
 
 // Create display object, this uses ultra-fast I2C clock: 800kHz
 Adafruit_SSD1306 lcd(128, 64, &Wire, -1);
@@ -35,7 +36,7 @@ CRGB ring2[16];
 //#define ringshow_noglitch2() {delay(1);ring2.show();delay(1);ring2.show();}
 //Adafruit_NeoPixel ring = Adafruit_NeoPixel(16, PIN, NEO_GRB + NEO_KHZ800);
 //Adafruit_NeoPixel ring2 = Adafruit_NeoPixel(16, PIN2, NEO_GRB + NEO_KHZ800);
-
+Servo servo;
 
 int samples[N]; // storage for a sample
 int periodFactor = 0; // For period calculation
@@ -57,25 +58,14 @@ void setup() {
   lcd.clearDisplay();
   lcd.display();
   delay(2000);
-//
-//  ring.begin();
-//  ring2.begin();
-//
-//  ring.setBrightness(32);
-//  ring2.setBrightness(32);
-//
-//  ring.clear(); // clear all pixels
-//  ring2.clear(); // clear all pixels
   
   FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds, NUM_LEDS);
   FastLED.addLeds<WS2812B, A16, GRB>(ring1, NUM_LEDS);
   FastLED.addLeds<WS2812B, 25, GRB>(ring2, NUM_LEDS);
   FastLED.clear();
-//
-//  ring.setPixelColor(0, 0);
-//  ring2.setPixelColor(0, 0);
-//  ringshow_noglitch();
-//  ringshow_noglitch2();
+
+   servo.attach(18); 
+
 }
 
 float getAvg() {
@@ -95,6 +85,8 @@ void loop() {
   int avg = getAvg();
   Serial.println(avg);
 
+  sweepServo();
+
   //lcd face 
   if (avg > 500) {
     lcd.clearDisplay();
@@ -110,7 +102,7 @@ void loop() {
     int button1 = digitalRead(BUTTON);
     Serial.println(button1);
     if (button1 == 0) {
-      strip_mode *= -1;
+      strip_mode *= 1;
     }
    timeout = millis();
   }
@@ -156,8 +148,6 @@ void loop() {
   FastLED.show();
 
 }
-
-
 
 void calculatePeriod(int i) {
   if (t1 == -1) {
@@ -217,4 +207,16 @@ void rainbowCycle(int wait) {
   uint8_t hue = beatsin8(10, 0x0, 0xFF);
   fill_rainbow(leds, NUM_LEDS, hue, 0);
   FastLED.show();
+}
+
+void sweepServo() {
+  for (int angle = 0; angle <= 180; angle++) {
+    servo.write(angle);  // Set the servo position
+    delay(10);             // Adjust the speed of the sweep
+  }
+
+  for (int angle = 180; angle >= 0; angle--) {
+    servo.write(angle);  // Set the servo position
+    delay(10);             // Adjust the speed of the sweep
+  }
 }
