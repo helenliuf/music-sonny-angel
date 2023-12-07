@@ -194,7 +194,34 @@ void drawHappyFace(int x, int y) {
   lcd.fillCircle(x + 22, y + 10, 2, WHITE);
 
   // Draw mouth
-  lcd.drawLine(x + 10, y + 20, x + 22, y + 20, WHITE);
+  lcd.drawLine(x + 10, y + 22, x + 12, y + 24, WHITE);
+  lcd.drawLine(x + 12, y + 24, x + 14, y + 26, WHITE);
+  lcd.drawLine(x + 14, y + 26, x + 16, y + 27, WHITE);
+  lcd.drawLine(x + 16, y + 27, x + 18, y + 26, WHITE);
+  lcd.drawLine(x + 18, y + 26, x + 20, y + 24, WHITE);
+  lcd.drawLine(x + 20, y + 24, x + 22, y + 22, WHITE);
+
+  lcd.display();
+}
+
+
+void drawHappyFace(int x, int y) {
+  lcd.clearDisplay();
+
+  // Draw face
+  lcd.drawCircle(x + 16, y + 16, 15, WHITE);
+
+  // Draw eyes
+  lcd.fillCircle(x + 10, y + 10, 2, WHITE);
+  lcd.fillCircle(x + 22, y + 10, 2, WHITE);
+
+  // Draw mouth
+  lcd.drawLine(x + 10, y + 22, x + 12, y + 24, WHITE);
+  lcd.drawLine(x + 12, y + 24, x + 14, y + 26, WHITE);
+  lcd.drawLine(x + 14, y + 26, x + 16, y + 27, WHITE);
+  lcd.drawLine(x + 16, y + 27, x + 18, y + 26, WHITE);
+  lcd.drawLine(x + 18, y + 26, x + 20, y + 24, WHITE);
+  lcd.drawLine(x + 20, y + 24, x + 22, y + 22, WHITE);
 
   lcd.display();
 }
@@ -209,7 +236,7 @@ void drawSadFace(int x, int y) {
   lcd.fillCircle(x + 10, y + 10, 2, WHITE);
   lcd.fillCircle(x + 22, y + 10, 2, WHITE);
 
-  // Draw mouth (approximate an arc with lines)
+  // Draw mouth
   lcd.drawLine(x + 10, y + 24, x + 12, y + 22, WHITE);
   lcd.drawLine(x + 12, y + 22, x + 14, y + 20, WHITE);
   lcd.drawLine(x + 14, y + 20, x + 16, y + 19, WHITE);
