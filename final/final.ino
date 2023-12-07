@@ -87,11 +87,15 @@ void loop() {
   sweepServo();
 
   //lcd face 
-  if (avg > 500) {
+  
+  if (avg > 700){
     lcd.clearDisplay();
     drawHappyFace(48, 16);
   }
-  else {
+  else if (avg > 400) {
+    lcd.clearDisplay();
+    drawMidFace(48, 16);
+  }else {
     lcd.clearDisplay();
     drawSadFace(48, 16);
   }
@@ -205,7 +209,7 @@ void drawHappyFace(int x, int y) {
 }
 
 
-void drawHappyFace(int x, int y) {
+void drawMidFace(int x, int y) {
   lcd.clearDisplay();
 
   // Draw face
@@ -216,12 +220,7 @@ void drawHappyFace(int x, int y) {
   lcd.fillCircle(x + 22, y + 10, 2, WHITE);
 
   // Draw mouth
-  lcd.drawLine(x + 10, y + 22, x + 12, y + 24, WHITE);
-  lcd.drawLine(x + 12, y + 24, x + 14, y + 26, WHITE);
-  lcd.drawLine(x + 14, y + 26, x + 16, y + 27, WHITE);
-  lcd.drawLine(x + 16, y + 27, x + 18, y + 26, WHITE);
-  lcd.drawLine(x + 18, y + 26, x + 20, y + 24, WHITE);
-  lcd.drawLine(x + 20, y + 24, x + 22, y + 22, WHITE);
+  lcd.drawLine(x + 10, y + 20, x + 22, y + 20, WHITE);
 
   lcd.display();
 }
