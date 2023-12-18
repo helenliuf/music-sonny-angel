@@ -8,6 +8,7 @@ https://www.canva.com/design/DAF1_amApRo/uNLPFWbWSq5N-Fl6BiW-HA/view?utm_content
 \
 \
 Project Website:
+https://sites.google.com/d/1Y37stg9eKI0qPFi64fMio4g81wzaYWzM/p/1jxc4MI7Tm-VNAtLN9TQY_ivm3qm21mn5/edit
 # Description
 There's never a dull moment here! Designed to bring happiness to the music enthusiasts and 'Sonny Angel' lovers of the world, this little buddy and his stage won't fail to brighten up your day (literally)! Give him company by talking to him or playing music, and he'll vibe with you through a face on his LCD screen and his amplitude-reactive light strips and NeoPixel LED rings.
 # Components
